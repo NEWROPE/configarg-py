@@ -4,11 +4,16 @@ version = "0.1.0"
 description = "Configuration file with argparse"
 authors = ["NEWROPE Co. Ltd. <dev@newrope.biz>"]
 license = "MIT"
+packages = [
+  { include = "configarg", from = "src" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.8"
 
 [tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
+pytest-cov = "^3.0.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
