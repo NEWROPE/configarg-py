@@ -1,16 +1,18 @@
 from functools import reduce
 import json
 
+
 def read_json(path):
     with open(path) as f:
         return json.load(f)
+
 
 class Config:
     def __init__(self, data):
         self.__data = data
 
     def __getitem__(self, path):
-        return reduce(lambda data, key: data[key], path.split('.'), self.__data)
+        return reduce(lambda data, key: data[key], path.split("."), self.__data)
 
     def configure(self, parser, table):
         defaults = {}
