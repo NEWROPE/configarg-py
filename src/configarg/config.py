@@ -1,5 +1,6 @@
 from functools import reduce
 import json
+import sys
 
 
 def read_json(path):
@@ -29,7 +30,7 @@ class Config:
 
     @classmethod
     def read_from_option(
-        cls, parser, field, args=None, help_flags=["-h", "--help"], **kwargs
+        cls, parser, field, args=sys.argv, help_flags=["-h", "--help"], **kwargs
     ):
         args, _ = parser.parse_known_args(
             args=[arg for arg in args if arg not in help_flags]
