@@ -23,22 +23,21 @@ def json_path(tmp_path):
     return path
 
 
-def test_config(json_path):
+def test_load(json_path):
     parser = argparse.ArgumentParser()
     parser.add_argument("--config")
     parser.add_argument("--option1")
     parser.add_argument("--option2")
     parser.add_argument("--option3")
-    config = Config.read_from_option(
-        parser, "config", args=["--config", str(json_path)]
-    )
-    config.configure(
+    Config.load(
         parser,
+        "config",
         {
             "key1": "option1",
             "key2": "option2",
             "nested.key3": "option3",
         },
+        args=["--config", str(json_path)],
     )
     args = parser.parse_args(args=["--option2", "value-from-cli"])
     assert args.option1 == "value1"

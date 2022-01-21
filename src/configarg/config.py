@@ -38,3 +38,9 @@ class Config:
         if path is None:
             return None
         return cls.read(path, **kwargs)
+
+    @classmethod
+    def load(cls, parser, field, table, **kwargs):
+        config = cls.read_from_option(parser, field, **kwargs)
+        if config is not None:
+            config.configure(parser, table)
