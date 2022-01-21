@@ -28,8 +28,12 @@ class Config:
         return cls(load(path))
 
     @classmethod
-    def read_from_option(cls, parser, field, args=None, **kwargs):
-        args, _ = parser.parse_known_args(args=args)
+    def read_from_option(
+        cls, parser, field, args=None, help_flags=["-h", "--help"], **kwargs
+    ):
+        args, _ = parser.parse_known_args(
+            args=[arg for arg in args if arg not in help_flags]
+        )
         path = getattr(args, field)
         if path is None:
             return None

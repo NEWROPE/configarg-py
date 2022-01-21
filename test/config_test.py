@@ -47,3 +47,19 @@ def test_read_from_option(json_path):
         parser, "config", args=["--config", str(json_path)]
     )
     assert config["test"] == "ok"
+
+
+def test_read_from_option_without_config(json_path):
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--config")
+    config = Config.read_from_option(parser, "config", args=[])
+    assert config is None
+
+
+def test_read_from_option_with_help(json_path):
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--config")
+    config = Config.read_from_option(
+        parser, "config", args=["--help", "--config", str(json_path)]
+    )
+    assert config["test"] == "ok"
