@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "configarg"
-version = "0.1.0"
+version = "0.1.1"
 description = "Configuration file with argparse"
 authors = ["NEWROPE Co. Ltd. <dev@newrope.biz>"]
 license = "MIT"
